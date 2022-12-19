@@ -1,0 +1,4 @@
+.devbox
+.env
+.vscode
+node_modules
