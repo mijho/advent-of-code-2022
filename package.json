@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "add:day": "./new-day.sh",
     "test": "vitest",
     "run:1": "cd src/challenges/day_01/ && node index.js",
     "run:2": "cd src/challenges/day_02/ && node index.js",
