@@ -7,15 +7,22 @@
   "scripts": {
     "add:day": "./new-day.sh",
     "test": "vitest",
+    "lint:check": "eslint --fix-dry-run src/challenges/**",
+    "lint:fix": "eslint --fix src/challenges/**",
     "run:1": "cd src/challenges/day_01/ && node index.js",
     "run:2": "cd src/challenges/day_02/ && node index.js",
     "run:3": "cd src/challenges/day_03/ && node index.js",
-    "run:4": "cd src/challenges/day_04/ && node index.js"
+    "run:4": "cd src/challenges/day_04/ && node index.js",
+    "run:5": "cd src/challenges/day_05/ && node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.1",
     "vitest": "^0.25.8"
   }
 }

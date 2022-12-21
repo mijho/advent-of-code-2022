@@ -24,9 +24,9 @@ test('calculate final score from part 1', async () => {
 EOF
 
 cat <<'EOF' > src/challenges/day_"${DAY}"/index.js
-import { processLineByLine } from '../../lib/linereader.js';
-import { fileURLToPath } from 'url';
 import process from 'process';
+import { fileURLToPath } from 'url';
+import { processLineByLine } from '../../lib/linereader.js';
 
 export const FUNCNAME = async (part, input) => {
     const lr = await processLineByLine(input);
@@ -38,5 +38,5 @@ export const FUNCNAME = async (part, input) => {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.log(`The total score if following the guide Part 1: ${await FUNCNAME(1, './input.txt')}`);
     console.log(`The total score if following the guide Part 2: ${await FUNCNAME(2, './input.txt')}`);
-};
+}
 EOF
