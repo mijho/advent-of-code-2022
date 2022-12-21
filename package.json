@@ -13,7 +13,12 @@
     "run:2": "cd src/challenges/day_02/ && node index.js",
     "run:3": "cd src/challenges/day_03/ && node index.js",
     "run:4": "cd src/challenges/day_04/ && node index.js",
-    "run:5": "cd src/challenges/day_05/ && node index.js"
+    "run:5": "cd src/challenges/day_05/ && node index.js",
+    "run:6": "cd src/challenges/day_06/ && node index.js",
+    "run:7": "cd src/challenges/day_07/ && node index.js",
+    "run:8": "cd src/challenges/day_08/ && node index.js",
+    "run:9": "cd src/challenges/day_09/ && node index.js",
+    "run:10": "cd src/challenges/day_10/ && node index.js"    
   },
   "keywords": [],
   "author": "",
