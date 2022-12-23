@@ -18,7 +18,6 @@ export const findStartOfPacket = async (part, input) => {
         quad.push(line[counter + i]);
       }
       if (new Set(quad).size == packetLength) {
-        console.log(new Set(quad));
         break;
       }
       total++;
