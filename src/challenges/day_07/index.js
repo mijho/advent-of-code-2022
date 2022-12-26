@@ -13,10 +13,14 @@ class Tree {
     curDir[item[1]] = !isNaN(item[0]) ? parseInt(item[0]) : {};
   }
 
-  cd(name) {
-    if (name === "/") this.pwd = [];
-    else if (name === "..") this.pwd.pop();
-    else this.pwd.push(name);
+  cd(dir) {
+    if (dir === "/") {
+      this.pwd = [];
+    } else if (dir === "..") {
+      this.pwd.pop();
+    } else {
+      this.pwd.push(dir);
+    }
   }
 }
 
@@ -24,23 +28,24 @@ export const findFileToRemove = async (input) => {
   const lr = await processLineByLine(input);
   const tree = new Tree();
 
-  // Build tree
   for await (const line of lr) {
-    let ins = line.split(" ");
-    if (ins[0] === "$") {
-      if (ins[1] === "cd") tree.cd(ins[2]);
+    let elements = line.split(" ");
+    if (elements[0] === "$") {
+      if (elements[1] === "cd") tree.cd(elements[2]);
     } else {
-      tree.add(ins);
+      tree.add(elements);
     }
   }
 
   let dirs = {};
-  // Get sizes of directories
   const crawl = (dir = "", branch = tree.view) => {
     let size = 0;
-    for (let [k, v] of Object.entries(branch)) {
-      if (!isNaN(v)) size += v;
-      else size += crawl(`${dir}/${k}`, branch[k]);
+    for (let [key, value] of Object.entries(branch)) {
+      if (!isNaN(value)) {
+        size += value;
+      } else {
+        size += crawl(`${dir}/${key}`, branch[key]);
+      }
     }
     dirs[dir ? dir : "/"] = size;
     return size;
@@ -53,12 +58,12 @@ export const findFileToRemove = async (input) => {
   const totalDirs = Object.values(dirs).length;
   const smallDirSum = Object.values(dirs)
     .filter((n) => n < 100000)
-    .reduce((a, n) => a + n, 0);
+    .reduce((a, v) => a + v, 0);
 
   const sizeNeeded = 30000000 - (70000000 - rootSize);
   const fileToDelete = Object.values(dirs)
     .sort((a, b) => a[1] - b[1])
-    .find((a) => a >= sizeNeeded);
+    .find((x) => x >= sizeNeeded);
 
   return {
     root_size: rootSize,
