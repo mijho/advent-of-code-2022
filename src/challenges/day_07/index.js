@@ -38,20 +38,20 @@ export const findFileToRemove = async (input) => {
   }
 
   let dirs = {};
-  const crawl = (dir = "", branch = tree.view) => {
+  const traverse = (dir = "", branch = tree.view) => {
     let size = 0;
     for (let [key, value] of Object.entries(branch)) {
       if (!isNaN(value)) {
         size += value;
       } else {
-        size += crawl(`${dir}/${key}`, branch[key]);
+        size += traverse(`${dir}/${key}`, branch[key]);
       }
     }
     dirs[dir ? dir : "/"] = size;
     return size;
   };
 
-  crawl();
+  traverse();
 
   dirs = Object.fromEntries(Object.entries(dirs).sort((a, b) => a[1] - b[1]));
   const rootSize = Object.entries(dirs).filter((x) => x.includes("/"))[0][1];
